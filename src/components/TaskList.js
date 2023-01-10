@@ -10,7 +10,6 @@ function TaskList({tasks, onEvent}) {
 
     useEffect(() => {
         let newArr = tasks.filter((item, index) => index !== useDeleteTask);
-        console.log("Hi ich werde ausgeführt")
         onEvent(newArr)
     }, [onEvent, tasks, useDeleteTask])
 
