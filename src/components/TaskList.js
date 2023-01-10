@@ -1,23 +1,23 @@
 import Task from "./Task";
-import {useState, useEffect} from "react";
 
-function TaskList({tasks, onEvent}) {
+function TaskList({ tasks, setToDos }) {
+  const handleDeletion = (id) => {
+    setToDos(tasks.filter((task) => task.id !== id));
+  };
 
-    const [useDeleteTask, setDeleteTask] = useState(-1)
-    const handleCheckbox = (deleteTodoid) => {
-        setDeleteTask(deleteTodoid)
-    }
-
-    useEffect(() => {
-        let newArr = tasks.filter((item, index) => index !== useDeleteTask);
-        onEvent(newArr)
-    }, [onEvent, tasks, useDeleteTask])
-
-
-    const renderedTaskList = tasks.map((task) => {
-        return <Task key={task.id} id={task.id} title={task.title} handleCheckbox={handleCheckbox}/>;
-    });
-    return <div className="">{renderedTaskList}</div>
+  return (
+    <div>
+      {tasks.map((task) => {
+        return (
+          <Task
+            key={task.id}
+            title={task.title}
+            handleDeletion={() => handleDeletion(task.id)}
+          />
+        );
+      })}
+    </div>
+  );
 }
 
 export default TaskList;
