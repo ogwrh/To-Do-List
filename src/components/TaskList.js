@@ -12,7 +12,7 @@ function TaskList({tasks, onEvent}) {
         let newArr = tasks.filter((item, index) => index !== useDeleteTask);
         console.log("Hi ich werde ausgeführt")
         onEvent(newArr)
-    }, [useDeleteTask])
+    }, [onEvent, tasks, useDeleteTask])
 
 
     const renderedTaskList = tasks.map((task) => {
